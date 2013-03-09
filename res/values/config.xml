@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">GeoLocation</string>
+    
+    <string name="action_settings">Settings</string>
+    
+     <!-- web service -->
+    <string name="web_service_url">http//localhost/geolocation</string>
+    
+    <!-- frequency in milliseconds -->
+    <integer name="call_frequency">1000</integer>
+
+</resources>
