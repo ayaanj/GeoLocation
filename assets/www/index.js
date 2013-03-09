@@ -33,8 +33,25 @@ function onSucess(position)
 */ 
 function sendCurrentPostion(lat, lon)
 {
-   alert(config.getDeviceId());	
-   alert("hello amit " + lat);
+	var deviceId = config.getDeviceId();
+	var webServiceUrl = config.getWebServiceUrl();
+	var methodCall = webServiceUrl+'/saveConsumerGeoLocation';
+
+	try
+	{
+		$.ajax({
+  			type: "POST",
+  			url: methodCall,
+  			data: { DEVICE_ID: deviceId, LATITUDE: lat, LONGITUDE: lon}
+			}).done(function( msg ) {
+  			alert( "Data Saved: " + msg );
+		});
+     	}
+     	catch(errr)
+     	{
+	
+		alert(errr);
+     	}	
 }
 
 
@@ -47,7 +64,7 @@ function onError(error)
  	alert("error"+error);
  	//TODO reporting
  	//try again
- 	setTimeout("getCurrentPostion()", getTimeoutInMillis()); 	
+ 	//setTimeout("getCurrentPostion()", getTimeoutInMillis()); 	
  }
 
 
