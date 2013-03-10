@@ -2,7 +2,9 @@ package com.infoobjects.geolocation;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.webkit.GeolocationPermissions;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
@@ -10,10 +12,12 @@ import android.webkit.WebView;
 
 /**
  * A minimal WebView app with HTML5 geolocation capability
- * 
+ * @author Jyothi Gagoria
+ *  
  */
-public class GeoLocationWebViewActivity extends Activity {
+public class GeoLocationActivity extends Activity {
 
+    private final String GEO_LOCATION_ACTIVITY_TAG = "GeoLocationActivity";
 	/**
 	 * WebChromeClient subclass handles UI-related calls
 	 */
@@ -30,20 +34,29 @@ public class GeoLocationWebViewActivity extends Activity {
 	WebView webView;
 
 	/** Called when the activity is first created. */
-	@SuppressLint("SetJavaScriptEnabled") 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		webView = (WebView) findViewById(R.id.webView);
+		initSettings();
+		webView.loadUrl("file:///android_asset/www/index.html");
+	}
+	
+
+	@SuppressLint("SetJavaScriptEnabled")
+	private void initSettings() {
+		Log.i(GEO_LOCATION_ACTIVITY_TAG, "initializing setting...");
 		webView.setWebChromeClient(new GeoLocationWebChromeClient());
-		webView.addJavascriptInterface(new GeoLocationWebViewConfig(this.getApplicationContext()), "config");
+		webView.addJavascriptInterface(
+				new GeoLocationConfig(this.getApplicationContext()),
+				"config");
 		WebSettings webViewSettings = webView.getSettings();
 		webViewSettings.setJavaScriptEnabled(true);
 		webViewSettings.setGeolocationEnabled(true);
 		webViewSettings.setAppCacheEnabled(false);
 		webViewSettings.setDatabaseEnabled(false);
 		webViewSettings.setDomStorageEnabled(false);
-		webView.loadUrl("file:///android_asset/www/index.html");
+		Log.i(GEO_LOCATION_ACTIVITY_TAG, "setting initialized...");
 	}
 }

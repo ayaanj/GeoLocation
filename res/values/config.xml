@@ -9,6 +9,6 @@
     <string name="web_service_url">http://hoojook.com/api/webservice/geofence</string>
     
     <!-- frequency in milliseconds -->
-    <integer name="call_frequency">1000</integer>
+    <integer name="call_frequency">30000</integer>
 
 </resources>

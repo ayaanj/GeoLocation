@@ -3,13 +3,16 @@ package com.infoobjects.geolocation;
 import android.content.Context;
 import android.content.res.Resources;
 import android.telephony.TelephonyManager;
+import android.util.Log;
 import android.webkit.JavascriptInterface;
 
-public class GeoLocationWebViewConfig {
+public class GeoLocationConfig {
 
+	private final String GEO_LOCATION_CONFIG_TAG = "GeoLocationConfig";
+	
 	Context context;
 
-	public GeoLocationWebViewConfig(Context context) {
+	public GeoLocationConfig(Context context) {
 		this.context = context;
 	}
 
@@ -29,5 +32,10 @@ public class GeoLocationWebViewConfig {
 	public String getDeviceId() {
 		TelephonyManager telephoneService = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
 		return telephoneService.getDeviceId();
+	}
+	
+	@JavascriptInterface
+	public void log(String msg) {
+		Log.i(GEO_LOCATION_CONFIG_TAG, msg);
 	}
 }
