@@ -56,6 +56,8 @@ function saveConsumerGeoLocation(lat, lon)
 		data: { DEVICE_ID: deviceId, LATITUDE: lat, LONGITUDE: lon}
 		}).done(function( msg ) {
 		  // alert("data saved");
+		$('#lat').html('Latitude:'+lat);
+                $('#lon').html('Longitude:'+lon);
 		config.log("data saved");
 		});
      	
