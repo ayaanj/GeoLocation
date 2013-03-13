@@ -11,7 +11,7 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 
 /**
- * A minimal WebView app with HTML5 geolocation capability
+ * A  WebView app with HTML5 geolocation capability
  * @author Jyothi Gagoria
  *  
  */
@@ -59,4 +59,5 @@ public class GeoLocationActivity extends Activity {
 		webViewSettings.setDomStorageEnabled(false);
 		Log.i(GEO_LOCATION_ACTIVITY_TAG, "setting initialized...");
 	}
+	
 }

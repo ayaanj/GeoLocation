@@ -6,9 +6,9 @@
     <string name="action_settings">Settings</string>
     
      <!-- web service -->
-    <string name="web_service_url">http://hoojook.com/api/webservice/geofence</string>
+    <string name="web_service_method_url">http://hoojook.com/api/webservice/geofence/saveConsumerGeoLocation</string>
     
-    <!-- frequency in milliseconds -->
-    <integer name="call_frequency">30000</integer>
+    <!-- interval between calls in millis -->
+    <integer name="interval">30000</integer>
 
 </resources>

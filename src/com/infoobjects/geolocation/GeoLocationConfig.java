@@ -17,21 +17,21 @@ public class GeoLocationConfig {
 	}
 
 	@JavascriptInterface
-	public int getCallFrequency() {
+	public int getInterval() {
 		Resources res = context.getResources();
-		int callFrequency = res.getInteger(R.integer.call_frequency);
-		return callFrequency;
+		int interval = res.getInteger(R.integer.interval);
+		return interval;
 	}
 
 	@JavascriptInterface
-	public String getWebServiceUrl() {
-		return context.getString(R.string.web_service_url);
+	public String getWebServiceMethodUrl() {
+		return context.getString(R.string.web_service_method_url);
 	}
 	
 	@JavascriptInterface
 	public String getDeviceId() {
 		TelephonyManager telephoneService = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
-		return telephoneService.getDeviceId();
+		return  telephoneService.getDeviceId();
 	}
 	
 	@JavascriptInterface

@@ -26,9 +26,9 @@ public final class R {
         public static final int webView=0x7f090000;
     }
     public static final class integer {
-        /**  frequency in milliseconds 
+        /**  interval between calls in millis 
          */
-        public static final int call_frequency=0x7f050000;
+        public static final int interval=0x7f050000;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
@@ -41,7 +41,7 @@ public final class R {
         public static final int app_name=0x7f040000;
         /**  web service 
          */
-        public static final int web_service_url=0x7f040002;
+        public static final int web_service_method_url=0x7f040002;
     }
     public static final class style {
         /** 
