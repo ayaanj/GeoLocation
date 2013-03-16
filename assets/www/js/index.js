@@ -1,5 +1,6 @@
 
 var DEFAULT_TIMEOUT_INTERVAL_IN_MILLIS = 30000;
+var deviceId = 0;
 
 /**
 * Get current consumer position
@@ -47,7 +48,7 @@ function onError(error){
 
 function saveConsumerGeoLocation(lat, lon){
 	
-	var deviceId = getConsumerDeviceId();
+	//umerDeviceId();
 	
 	var webServiceUrl = getWebServiceMethodUrl();
 	
@@ -59,10 +60,10 @@ function saveConsumerGeoLocation(lat, lon){
 		url: webServiceUrl,
 		data: { DEVICE_ID: deviceId, LATITUDE: lat, LONGITUDE: lon},
 		error: function(xhr){ $('#status').html(xhr.status + " " + xhr.statusText);
-			//config.log("failed to post data"+xhr.status);			
+			config.log("failed to post data");			
 			},
                 success: function(result,status,xhr){ $('#status').html(status + " " + result);
-			 //config.log("data successfully saved"+status);	
+			 config.log("data successfully saved");	
 			}
 		});
      	
@@ -74,22 +75,13 @@ function getTimeoutInterval(){
 	if(typeof config === "undefined" ){
 
 		return DEFAULT_TIMEOUT_INTERVAL_IN_MILLIS;
-	}
+	}	
 	else{	
 		return config.getInterval();	
 
 	}
 }
 
-function getConsumerDeviceId(){
-	if(typeof config === "undefined" ){
-		
-		return 0;
-	}
-	else{			
-		return config.getDeviceId();	
-	}
-}
 
 function getWebServiceMethodUrl(){
 
@@ -101,5 +93,4 @@ function getWebServiceMethodUrl(){
 		return config.getWebServiceMethodUrl();	
 	}
 }
-
-
+    
