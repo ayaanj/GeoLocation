@@ -3,6 +3,7 @@ package com.infoobjects.geolocation;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.util.Log;
 import android.webkit.GeolocationPermissions;
@@ -11,13 +12,15 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 
 /**
- * A  WebView app with HTML5 geolocation capability
+ * A WebView app with HTML5 geolocation capability
+ * 
  * @author Jyothi Gagoria
- *  
+ * 
  */
 public class GeoLocationActivity extends Activity {
 
-    private final String GEO_LOCATION_ACTIVITY_TAG = "GeoLocationActivity";
+	private final String GEO_LOCATION_ACTIVITY_TAG = "GeoLocationActivity";
+
 	/**
 	 * WebChromeClient subclass handles UI-related calls
 	 */
@@ -42,22 +45,30 @@ public class GeoLocationActivity extends Activity {
 		initSettings();
 		webView.loadUrl("file:///android_asset/www/index.html");
 	}
-	
 
 	@SuppressLint("SetJavaScriptEnabled")
 	private void initSettings() {
 		Log.i(GEO_LOCATION_ACTIVITY_TAG, "initializing setting...");
 		webView.setWebChromeClient(new GeoLocationWebChromeClient());
-		webView.addJavascriptInterface(
-				new GeoLocationConfig(this.getApplicationContext()),
-				"config");
+		BatteryLevelReceiver batteryLevelReceiver = new BatteryLevelReceiver();
+		addBatteryStatusReceiver(batteryLevelReceiver);
+		GeoLocationWebInterface webInterface = new GeoLocationWebInterface(
+				this.getApplicationContext(), batteryLevelReceiver);
+		webView.addJavascriptInterface(webInterface, "config");
 		WebSettings webViewSettings = webView.getSettings();
 		webViewSettings.setJavaScriptEnabled(true);
 		webViewSettings.setGeolocationEnabled(true);
 		webViewSettings.setAppCacheEnabled(false);
 		webViewSettings.setDatabaseEnabled(false);
-		webViewSettings.setDomStorageEnabled(false);
+		webViewSettings.setDomStorageEnabled(true);
+		webViewSettings.setDatabasePath("/data/data/com.infoobjects.geolocation/databases");
 		Log.i(GEO_LOCATION_ACTIVITY_TAG, "setting initialized...");
 	}
-	
+
+	private void addBatteryStatusReceiver(
+			BatteryLevelReceiver batteryLevelReceiver) {
+		IntentFilter ifilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
+		registerReceiver(batteryLevelReceiver, ifilter);
+
+	}
 }

@@ -9,6 +9,10 @@
     <string name="web_service_method_url">http://hoojook.com/api/webservice/geofence/saveConsumerGeoLocation</string>
     
     <!-- interval between calls in millis -->
-    <integer name="interval">30000</integer>
+    <!-- 15 mins -->
+    <integer name="min">900000</integer>
+    
+    <!-- 2 hrs -->
+    <integer name="max">7200000</integer>
 
 </resources>

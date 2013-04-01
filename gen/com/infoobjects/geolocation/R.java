@@ -26,9 +26,13 @@ public final class R {
         public static final int webView=0x7f090000;
     }
     public static final class integer {
-        /**  interval between calls in millis 
+        /**  2 hrs 
          */
-        public static final int interval=0x7f050000;
+        public static final int max=0x7f050001;
+        /**  interval between calls in millis 
+ 15 mins 
+         */
+        public static final int min=0x7f050000;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
